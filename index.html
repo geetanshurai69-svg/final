@@ -64,4 +64,18 @@ render();
 
 const extensionUrl = window.SPIRALSENSE_EXTENSION_URL || './spiralsense-extension.zip';
 document.querySelectorAll('.extension-download').forEach(a=>{a.href=extensionUrl;a.setAttribute('download','spiralsense-extension.zip');a.target='_blank';});
+
+// Top navigation must open the matching dashboard tab.
+document.querySelectorAll('a[href="#analytics"],a[href="#activity"],a[href="#privacy"],a[href="#dashboard"]').forEach(link=>{
+  link.addEventListener('click',function(e){
+    const id=this.getAttribute('href').slice(1);
+    const section=document.getElementById(id);
+    if(!section)return;
+    e.preventDefault();
+    section.scrollIntoView({behavior:'smooth',block:'start'});
+    const tab=document.querySelector('.side button[data-tab="'+id+'"]');
+    if(tab) tab.click();
+  });
+});
+
 </script></body></html>
