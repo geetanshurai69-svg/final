@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SpiralSense — Dashboard</title>
+<style>
+:root{--bg:#0b0b0f;--panel:#121218;--panel2:#171720;--line:#292936;--text:#f7f7fb;--muted:#a5a5b4;--indigo:#6d5dfc;--purple:#9b7cff;--green:#35d39a;--orange:#ff9b52;--red:#ff6b7a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#24203f 0,#0b0b0f 38%);color:var(--text);font-family:Inter,system-ui,sans-serif}button,a{font:inherit}.container{width:min(1180px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:20;background:#0b0b0fcc;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff0b}.nav{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:850;font-size:20px;letter-spacing:-.04em}.brand span{color:var(--purple)}.navlinks{display:flex;gap:22px;color:var(--muted);font-size:14px}.navlinks a{color:inherit;text-decoration:none}.btn{border:1px solid var(--line);background:#17171f;color:#fff;padding:11px 16px;border-radius:12px;font-weight:750;cursor:pointer;text-decoration:none}.primary{background:linear-gradient(135deg,var(--indigo),var(--purple));border:0}
+.hero{padding:90px 0 50px;text-align:center}.eyebrow{display:inline-block;padding:7px 11px;border:1px solid #302d51;border-radius:999px;color:#c7c0ff;background:#15132a;font-size:12px}.hero h1{font-size:clamp(48px,8vw,86px);line-height:.98;letter-spacing:-.065em;max-width:930px;margin:24px auto 18px}.hero p{color:var(--muted);font-size:18px;max-width:720px;margin:0 auto 26px}.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+section{padding:70px 0}.section-title{max-width:720px;margin-bottom:30px}.section-title h2{font-size:clamp(34px,5vw,56px);line-height:1.02;letter-spacing:-.05em;margin:0 0 12px}.section-title p{color:var(--muted);font-size:16px}.dashboard{display:grid;grid-template-columns:220px 1fr;min-height:500px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#0f0f14}.side{padding:16px;background:#101016;border-right:1px solid var(--line)}.side button{display:block;width:100%;text-align:left;border:0;background:transparent;color:var(--muted);padding:11px 12px;border-radius:9px;margin:2px 0;cursor:pointer}.side button.active{background:#1d1936;color:#fff}.dash{padding:22px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{border:1px solid var(--line);background:linear-gradient(180deg,#15151d,#111117);border-radius:16px;padding:18px}.label{font-size:12px;color:var(--muted)}.metric{font-size:30px;font-weight:850;letter-spacing:-.04em;margin-top:4px}.sub{font-size:11px;color:#7f7f8e;margin-top:5px}.wide{margin-top:12px}.chart{height:230px;display:flex;align-items:end;gap:7px;padding:20px 8px}.bar{flex:1;min-width:6px;border-radius:7px 7px 2px 2px;background:linear-gradient(#9b7cff,#5d4ae5)}.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{text-align:left;padding:12px 8px;border-bottom:1px solid #25252f}.table th{color:#858594;font-weight:600}.pill{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px}.normal{background:#17251f;color:#67e3b4}.possible{background:#29231a;color:#ffbd83}.detected{background:#2b1c24;color:#ff9dac}.privacy{display:grid;grid-template-columns:1fr 1fr;gap:12px}.toggle{display:flex;justify-content:space-between;align-items:center}.switch{width:42px;height:24px;background:#6d5dfc;border-radius:20px;padding:3px}.switch:after{content:"";display:block;width:18px;height:18px;border-radius:50%;background:white;margin-left:18px}.download{display:flex;align-items:center;justify-content:space-between;gap:15px}.footer{border-top:1px solid var(--line);padding:45px 0;color:var(--muted);font-size:12px}
+@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}.navlinks{display:none}.dashboard{grid-template-columns:1fr}.side{display:flex;overflow:auto;border-right:0;border-bottom:1px solid var(--line)}.side button{white-space:nowrap;width:auto}.privacy{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header><div class="container nav"><a class="brand" href="#">Spiral<span>Sense</span></a><nav class="navlinks"><a href="#dashboard">Dashboard</a><a href="#analytics">Analytics</a><a href="#activity">Activity</a><a href="#privacy">Privacy</a></nav><a class="btn primary" href="#" class="extension-download">Add extension</a></div></header>
+<main>
+<section class="hero"><div class="container"><div class="eyebrow">Privacy-first behavioral awareness</div><h1>Make the Invisible Pattern Visible.</h1><p>SpiralSense measures scroll velocity, dwell time and behavioral patterns locally — then gives you a gentle signal when a spiral may be forming.</p><div class="actions"><a class="btn primary" href="#dashboard">Open dashboard</a><a class="btn" href="#analytics">View analytics</a></div></div></section>
+<section id="dashboard"><div class="container"><div class="section-title"><h2>Your behavioral dashboard.</h2><p>This dashboard uses live extension data when the extension is installed, and remains useful with locally stored demo data otherwise.</p></div>
+<div class="dashboard"><aside class="side"><button class="active" data-tab="overview">Overview</button><button data-tab="analytics">Analytics</button><button data-tab="activity">Today's Activity</button><button data-tab="reports">Weekly Report</button><button data-tab="focus">Focus Sessions</button><button data-tab="privacy">Privacy</button></aside>
+<div class="dash">
+<div id="overview"><div class="cards">
+<div class="card"><div class="label">Today's spirals</div><div class="metric" id="mSpirals">0</div><div class="sub">detected transitions</div></div>
+<div class="card"><div class="label">Current score</div><div class="metric" id="mScore">0</div><div class="sub" id="mState">Normal</div></div>
+<div class="card"><div class="label">Scroll velocity</div><div class="metric" id="mVelocity">0</div><div class="sub">pixels / second</div></div>
+<div class="card"><div class="label">Average dwell</div><div class="metric" id="mDwell">0s</div><div class="sub">between bursts</div></div>
+</div><div class="card wide"><div class="label">Recent signal</div><div class="chart" id="chart"></div></div></div>
+<div id="analytics" hidden><div class="cards"><div class="card"><div class="label">Peak velocity</div><div class="metric" id="peak">0</div></div><div class="card"><div class="label">Avg. velocity</div><div class="metric" id="avg">0</div></div><div class="card"><div class="label">Spiral events</div><div class="metric" id="events">0</div></div><div class="card"><div class="label">Signals stored</div><div class="metric" id="stored">0</div></div></div><div class="card wide"><h3>Explainable signals</h3><p class="label">Velocity is the average scroll speed captured by the extension. Dwell is the measured pause between scrolling bursts. No page text is needed.</p></div></div>
+<div id="activity" hidden><div class="card"><h3>Today's Activity</h3><table class="table"><thead><tr><th>Time</th><th>Site</th><th>State</th><th>Score</th><th>Velocity</th></tr></thead><tbody id="activityRows"></tbody></table></div></div>
+<div id="reports" hidden><div class="card"><h3>Weekly Report</h3><p class="label">Your report is calculated from the locally stored extension events.</p><div class="cards" style="margin-top:15px"><div class="card"><div class="label">7-day spiral events</div><div class="metric" id="weekSpirals">0</div></div><div class="card"><div class="label">Highest score</div><div class="metric" id="weekPeak">0</div></div></div></div></div>
+<div id="focus" hidden><div class="card"><h3>Focus Sessions</h3><p class="label">Focus sessions are intentionally lightweight. The extension records session boundaries without reading your content.</p><div class="metric" id="sessions">0</div><div class="label">sessions today</div></div></div>
+<div id="privacy" hidden><div class="privacy"><div class="card"><div class="toggle"><div><h3>Local storage</h3><div class="label">Analytics stay in Chrome storage.</div></div><div class="switch"></div></div></div><div class="card"><h3>No content reading</h3><div class="label">The detector only needs scroll timing and movement signals.</div></div></div></div>
+</div></div></div></section>
+<section><div class="container"><div class="card download"><div><h3 style="margin:0 0 5px">Install the real extension</h3><div class="label">Download the packaged Manifest V3 extension and load it in Chrome.</div></div><a class="btn primary" href="#" class="extension-download">Download extension</a></div></div></section>
+</main><footer class="footer"><div class="container">SpiralSense · local-first behavioral awareness</div></footer>
+<script src="./config.js"></script>
+<script>
+const storeKey='spiralsense-dashboard-events';
+const demo=[{ts:Date.now()-600000,state:'Normal',score:22,velocity:420,dwell:4.8,site:'example.com'},{ts:Date.now()-500000,state:'Focused',score:48,velocity:710,dwell:3.2,site:'youtube.com'},{ts:Date.now()-400000,state:'Possible spiral',score:67,velocity:1080,dwell:2.1,site:'reddit.com'},{ts:Date.now()-300000,state:'Possible spiral',score:72,velocity:1240,dwell:1.8,site:'youtube.com'},{ts:Date.now()-200000,state:'Spiral detected',score:86,velocity:1640,dwell:1.1,site:'youtube.com'}];
+let events=JSON.parse(localStorage.getItem(storeKey)||'null')||demo;
+function save(){localStorage.setItem(storeKey,JSON.stringify(events.slice(-500)))}
+function render(){
+ const c=events.length?events[events.length-1]:{};
+ const spirals=events.filter(x=>x.state==='Spiral detected').length;
+ document.getElementById('mSpirals').textContent=spirals;
+ document.getElementById('mScore').textContent=Math.round(c.score||0);
+ document.getElementById('mVelocity').textContent=Math.round(c.velocity||0).toLocaleString();
+ document.getElementById('mDwell').textContent=(c.dwell||0).toFixed(1)+'s';
+ document.getElementById('mState').textContent=c.state||'Normal';
+ const vals=events.slice(-28).map(x=>Math.min(100,Math.max(8,(x.velocity||0)/18)));
+ document.getElementById('chart').innerHTML=vals.map(v=>`<div class="bar" style="height:${v}%"></div>`).join('');
+ const velocities=events.map(x=>x.velocity||0);
+ document.getElementById('peak').textContent=Math.round(Math.max(0,...velocities)).toLocaleString();
+ document.getElementById('avg').textContent=Math.round(velocities.reduce((a,b)=>a+b,0)/Math.max(1,velocities.length)).toLocaleString();
+ document.getElementById('events').textContent=spirals;
+ document.getElementById('stored').textContent=events.length;
+ document.getElementById('sessions').textContent=new Set(events.map(x=>new Date(x.ts).toDateString())).size;
+ document.getElementById('weekSpirals').textContent=events.filter(x=>x.state==='Spiral detected' && Date.now()-x.ts<7*864e5).length;
+ document.getElementById('weekPeak').textContent=Math.round(Math.max(0,...events.filter(x=>Date.now()-x.ts<7*864e5).map(x=>x.score||0)));
+ document.getElementById('activityRows').innerHTML=events.slice(-30).reverse().map(x=>`<tr><td>${new Date(x.ts).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</td><td>${escapeHtml(x.site||'Unknown')}</td><td><span class="pill ${x.state==='Spiral detected'?'detected':x.state==='Possible spiral'?'possible':'normal'}">${escapeHtml(x.state)}</span></td><td>${Math.round(x.score||0)}</td><td>${Math.round(x.velocity||0).toLocaleString()}</td></tr>`).join('');
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+document.querySelectorAll('.side button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.side button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('#overview,#analytics,#activity,#reports,#focus,#privacy').forEach(x=>x.hidden=true);document.getElementById(b.dataset.tab).hidden=false});
+window.addEventListener('spiralsense:sync',e=>{const d=e.detail||{};if(Array.isArray(d.history)&&d.history.length){events=d.history;save();render()}});
+window.addEventListener('spiralsense:analytics',e=>{if(e.detail){events.push({ts:Date.now(),...e.detail});events=events.slice(-500);save();render()}});
+render();
+
+const extensionUrl = window.SPIRALSENSE_EXTENSION_URL || './spiralsense-extension.zip';
+document.querySelectorAll('.extension-download').forEach(a=>{a.href=extensionUrl;a.setAttribute('download','spiralsense-extension.zip');a.target='_blank';});
+</script></body></html>
